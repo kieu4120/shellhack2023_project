@@ -1,12 +1,5 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Hello</title>
-</head>
-<body>
-   
-    <h1>Loading</h1>
-    <br><iframe src="https://giphy.com/embed/3o7bu3XilJ5BOiSGic" width="480" height="480" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/youtube-loading-gif-3o7bu3XilJ5BOiSGic">via GIPHY</a></p>
+{% extends 'base.html' %}
+{% block script %}
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
         $(document).ready(function() {
@@ -30,8 +23,67 @@
             ;
         });
     </script>
+{% endblock %}
+
+{% block style %}
+<style>
     
-</body>
-</html>
+    body{
+        color: aliceblue;
+        background-color: #211522;
+        margin: auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+    h1 {
+        color: #C197D2;
+        font-size: 60px;
+        padding-top: 30vh;
+    }
+    svg{
+        width: 100px;
+        height: 100px;
+        margin-left: 40px;
+        display:inline-block;
+    }
+</style>
+{% endblock %}
+
+{% block body %}
+    <h1>Loading</h1>
+    <svg version="1.1" id="L5" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+    viewBox="0 0 100 100" enable-background="new 0 0 0 0" xml:space="preserve">
+    <circle fill="#C197D2" stroke="none" cx="6" cy="50" r="6">
+      <animateTransform 
+         attributeName="transform" 
+         dur="1s" 
+         type="translate" 
+         values="0 15 ; 0 -15; 0 15" 
+         repeatCount="indefinite" 
+         begin="0.1"/>
+    </circle>
+    <circle fill="#C197D2" stroke="none" cx="30" cy="50" r="6">
+      <animateTransform 
+         attributeName="transform" 
+         dur="1s" 
+         type="translate" 
+         values="0 10 ; 0 -10; 0 10" 
+         repeatCount="indefinite" 
+         begin="0.2"/>
+    </circle>
+    <circle fill="#C197D2" stroke="none" cx="54" cy="50" r="6">
+      <animateTransform 
+         attributeName="transform" 
+         dur="1s" 
+         type="translate" 
+         values="0 5 ; 0 -5; 0 5" 
+         repeatCount="indefinite" 
+         begin="0.3"/>
+    </circle>
+  </svg>
+  {% endblock %}
+
 
 
