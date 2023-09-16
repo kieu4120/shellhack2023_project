@@ -18,6 +18,13 @@
     flex-direction: row;
     width: 70%;
   }
+  .column {
+    width: 50%;
+    color: green;
+    height: 100vh;
+    display: flex;
+    flex-direction: row;
+  }
 
 </style>
 {% endblock %}
@@ -27,25 +34,30 @@
     <h1>Choose an Option or Enter "Other"</h1>
 
     <form method="post">
-      <div class="column"></div>
-      <button class="my-choice" type="submit" name="choice" value="Fantasy">
-        Nature and Wilderness
-      </button>
-      <button class="my-choice" type="submit" name="choice" value="Fairy tales">
-        Indoor Relaxation
-      </button>
-      <button class="my-choice" type="submit" name="choice" value="Fairy tales">
+      <div class="column">
+        <button class="my-choice" type="submit" name="choice" value="Fantasy">
+          Nature and Wilderness
+        </button>
+        <button class="my-choice" type="submit" name="choice" value="Fairy tales">
+          Indoor Relaxation
+        </button>
+        <button class="my-choice" type="submit" name="choice" value="Fairy tales">
         Urban and Nighttime Scene
-      </button>
-      <button class="my-choice" type="submit" name="choice" value="Fairy tales">
-        Fantasy and Otherworldly
-      </button>
-      <button class="my-choice" type="submit" name="choice" value="Fairy tales">
-        Science Fiction
-      </button>
-      <button class="my-choice" type="submit" name="choice" value="Fairy tales">
-        Underwater Worlds
-      </button>
+        </button>
+      </div>
+        <div class="column">
+        
+        <button class="my-choice" type="submit" name="choice" value="Fairy tales">
+          Fantasy and Otherworldly
+        </button>
+        <button class="my-choice" type="submit" name="choice" value="Fairy tales">
+          Science Fiction
+        </button>
+        <button class="my-choice" type="submit" name="choice" value="Fairy tales">
+          Underwater Worlds
+        </button>
+      </div>
+
 
       <!-- <label>
             <input type="radio" name="choice" value="Option 1"> Option 1
