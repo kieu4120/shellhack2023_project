@@ -1,16 +1,32 @@
 <!DOCTYPE html>
 <html>
-<head>
+  <head>
     <title>Choice or Other</title>
-</head>
-<body>
+  </head>
+  <body>
     <h1>Choose an Option or Enter "Other"</h1>
-    
+
     <form method="post">
-        <button type="submit" name="choice" value="Button 1">Button 1</button>
-        <button type="submit" name="choice" value="Button 2">Button 2</button>
-        
-        <!-- <label>
+      <button class="my-choice" type="submit" name="choice" value="Fantasy">
+        Nature and Wilderness
+      </button>
+      <button class="my-choice" type="submit" name="choice" value="Fairy tales">
+        Indoor Relaxation
+      </button>
+      <button class="my-choice" type="submit" name="choice" value="Fairy tales">
+        Urban and Nighttime Scene
+      </button>
+      <button class="my-choice" type="submit" name="choice" value="Fairy tales">
+        Fantasy and Otherworldly
+      </button>
+      <button class="my-choice" type="submit" name="choice" value="Fairy tales">
+        Science Fiction
+      </button>
+      <button class="my-choice" type="submit" name="choice" value="Fairy tales">
+        Underwater Worlds
+      </button>
+
+      <!-- <label>
             <input type="radio" name="choice" value="Option 1"> Option 1
         </label><br>
         
@@ -21,14 +37,18 @@
         <label>
             <input type="radio" name="choice" value="Option 3"> Option 3
         </label><br> -->
-        
-        <label>
-            <input type="radio" name="choice" value="Other"> Other
-        </label><br>
-        
-        <input type="text" name="other_input" placeholder="Enter other option" style="margin-top: 5px;"><br>
-        
-        <input type="submit" value="Submit">
+
+      <label> <input type="radio" name="choice" value="Other" /> Other </label
+      ><br />
+
+      <input
+        type="text"
+        name="other_input"
+        placeholder="Enter other option"
+        style="margin-top: 5px"
+      /><br />
+
+      <input type="submit" value="Submit" />
     </form>
-</body>
+  </body>
 </html>
