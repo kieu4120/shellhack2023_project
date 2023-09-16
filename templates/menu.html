@@ -113,21 +113,7 @@
         <label>
             <input type="radio" name="choice" value="Option 3"> Option 3
         </label><br> -->
-  <div class="column-1">
-    <label> <input type="checkbox" name="choice" value="Other" /> Other </label>
-    <br />
-
-    <input
-      type="text"
-      name="other_input"
-      placeholder="Enter other option"
-      style="margin-top: 5px"
-    /><br />
-
-    <input type="submit" value="Submit" />
-  </div>
   <div><h3>Choose your language</h3></div>
-  <!-- div for lang -->
   <div>
     <label>
       <input type="checkbox" id="checkbox1" name="lang_input" />English</label
@@ -160,5 +146,20 @@
       checkbox1.checked = true;
     </script>
   </div>
+  <div class="column-1">
+    <label> <input type="checkbox" name="choice" value="Other" /> Other </label>
+    <br />
+
+    <input
+      type="text"
+      name="other_input"
+      placeholder="Enter other option"
+      style="margin-top: 5px"
+    /><br />
+
+    <input type="submit" value="Submit" />
+  </div>
+
+  <!-- div for lang -->
 </form>
 {% endblock %}
