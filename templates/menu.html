@@ -1,13 +1,33 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Choice or Other</title>
+{% extends 'base.html' %}
+{% block script %}
     <script src="{{ url_for('static', filename='script.js') }}"></script>
-  </head>
-  <body>
+{%endblock%}
+{% block style %}
+<style>
+  body {
+    color: aliceblue;
+    background-color: #211522;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+  form {
+    display: flex;
+    flex-direction: row;
+    width: 70%;
+  }
+
+</style>
+{% endblock %}
+
+{% block body %}
+
     <h1>Choose an Option or Enter "Other"</h1>
 
     <form method="post">
+      <div class="column"></div>
       <button class="my-choice" type="submit" name="choice" value="Fantasy">
         Nature and Wilderness
       </button>
@@ -51,5 +71,5 @@
 
       <input type="submit" value="Submit" />
     </form>
-  </body>
-</html>
+{% endblock %}
+
