@@ -7,6 +7,31 @@
    
     <h1>Loading</h1>
     <br><iframe src="https://giphy.com/embed/3o7bu3XilJ5BOiSGic" width="480" height="480" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/youtube-loading-gif-3o7bu3XilJ5BOiSGic">via GIPHY</a></p>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            // Attach a click event handler to the button
+           
+                // Make an AJAX GET request to a server endpoint
+                
+                $.ajax({
+                    type: 'GET', // HTTP request method (GET, POST, PUT, DELETE, etc.)
+                    url: '/functioning', // URL of the server endpoint to request data from
+                    success: function(response) {
+                        if (response.status === 'Done'){
+                            window.location.href = '/result';
+                        }
+                        // Handle the successful response from the server
+                        console.log(response);
+                        // You can update the DOM with the response data here
+                    }
+                
+                });
+            ;
+        });
+    </script>
     
 </body>
 </html>
+
+

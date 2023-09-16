@@ -10,6 +10,11 @@ openai.api_key = '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'
 model_id = 'gpt-3.5-turbo'
 
 
+@app.route('/functioning')
+def functioning():
+    cv = ChatGPT_conversation(selected_option)
+    return jsonify({'status': 'Done'})
+    
 
 def ChatGPT_conversation(choice):
 
@@ -21,6 +26,7 @@ def ChatGPT_conversation(choice):
     response =  openai.ChatCompletion.create(
         model=model_id,
         messages= [{'role':'user', 'content': f"Write a story with topic {choice}"}],
+        max_tokens = 50,
         temperature = 0.6
     )
 
@@ -50,37 +56,30 @@ def menu():
     if request.method == 'POST':
         choice = request.form.get('choice')
         other_input = request.form.get('other_input')
+        global selected_option
         if choice == "Other" and other_input:
             selected_option = other_input
-            conv = ChatGPT_conversation(selected_option)
+            
         else:
             selected_option = choice
-            conv = ChatGPT_conversation (selected_option)
-            #call the function
+            
+        return redirect(url_for('loading'))
 
         # return redirect(url_for('loading'))
     
     return render_template('menu.html')
 
 is_finished = False
-def simulate_long_running_task():
-    time.sleep(5)  # Simulate a 5-second delay (replace with your actual task)
-    is_finished = True
+
 
 
 
 @app.route('/loading')
 def loading():
-    if is_finished == False:
-        background_thread = threading.Thread(target=simulate_long_running_task)
-        background_thread.start()
-        
-        # Wait for the task to finish (you can use more sophisticated methods)
-        background_thread.join()
-   
-    # Redirect to a different route after the task is done
-        return redirect(url_for('result'))
     return render_template('loading.html')
+
+
+    
 
 
 
