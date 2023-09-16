@@ -1,6 +1,5 @@
 from flask import Flask, render_template, request, redirect, url_for, jsonify
-import time
-import threading
+
 app = Flask(__name__)
 
 
@@ -17,12 +16,6 @@ def functioning():
     
 
 def ChatGPT_conversation(choice):
-
-    #user prompts the input
-   
-    #user picks a category to generate a story.
-
-    
     response =  openai.ChatCompletion.create(
         model=model_id,
         messages= [{'role':'user', 'content': f"Write a story with topic {choice}"}],
@@ -59,7 +52,6 @@ def menu():
         global selected_option
         if choice == "Other" and other_input:
             selected_option = other_input
-            
         else:
             selected_option = choice
             
@@ -69,18 +61,10 @@ def menu():
     
     return render_template('menu.html')
 
-is_finished = False
-
-
-
 
 @app.route('/loading')
 def loading():
     return render_template('loading.html')
-
-
-    
-
 
 
 @app.route('/result')
