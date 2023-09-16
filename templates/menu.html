@@ -1,8 +1,6 @@
-{% extends 'base.html' %}
-{% block script %}
-    <script src="{{ url_for('static', filename='script.js') }}"></script>
-{%endblock%}
-{% block style %}
+{% extends 'base.html' %} {% block script %}
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+{%endblock%} {% block style %}
 <style>
   body {
     color: aliceblue;
@@ -25,7 +23,7 @@
     width: 100%;
     align-items: center;
   }
-  .column-2-parrent{
+  .column-2-parrent {
     display: flex;
     flex-direction: row;
   }
@@ -36,33 +34,32 @@
     display: flex;
     flex-direction: column;
   }
-  .column-2-parrent button{
+  .column-2-parrent button {
     height: 80px;
     margin-top: 20px;
     margin-left: 10px;
     margin-right: 10px;
     border-radius: 5px;
-    border: 1px solid ;
+    border: 1px solid;
     padding: 0px 20px;
     font-size: 2em;
-    background: #D3B1C2;
+    background: #d3b1c2;
     cursor: pointer;
   }
 
-  .column-1 input:first-of-type{
+  .column-1 input:first-of-type {
     width: 100%;
     border-radius: 25px;
-    border: 2px solid #73AD21;
-    padding: 0 20px; 
-    height: 50px; 
+    border: 2px solid #73ad21;
+    padding: 0 20px;
+    height: 50px;
     font-size: 30px;
   }
 
-  .column-1 input:last-of-type
-  {
+  .column-1 input:last-of-type {
     width: 30%;
     border-radius: 5px;
-    border: 1px solid ;
+    border: 1px solid;
     padding: 0px 20px;
     font-size: 2em;
     background: white;
@@ -73,45 +70,39 @@
     display: flex;
     width: 20%;
   }
-
 </style>
-{% endblock %}
+{% endblock %} {% block body %}
 
-{% block body %}
+<h1>Choose an Option or Enter "Other"</h1>
 
-    <h1>Choose an Option or Enter "Other"</h1>
+<form method="post">
+  <div class="column-2-parrent">
+    <div class="column-2">
+      <button class="my-choice" type="submit" name="choice" value="Fantasy">
+        Nature and Wilderness
+      </button>
+      <button class="my-choice" type="submit" name="choice" value="Fairy tales">
+        Indoor Relaxation
+      </button>
+      <button class="my-choice" type="submit" name="choice" value="Fairy tales">
+        Urban and Nighttime Scene
+      </button>
+    </div>
 
-    <form method="post">
-      <div class="column-2-parrent">
-        <div class="column-2">
-          <button class="my-choice" type="submit" name="choice" value="Fantasy">
-            Nature and Wilderness
-          </button>
-          <button class="my-choice" type="submit" name="choice" value="Fairy tales">
-            Indoor Relaxation
-          </button>
-          <button class="my-choice" type="submit" name="choice" value="Fairy tales">
-          Urban and Nighttime Scene
-          </button>
-        </div>
+    <div class="column-2">
+      <button class="my-choice" type="submit" name="choice" value="Fairy tales">
+        Fantasy and Otherworldly
+      </button>
+      <button class="my-choice" type="submit" name="choice" value="Fairy tales">
+        Science Fiction
+      </button>
+      <button class="my-choice" type="submit" name="choice" value="Fairy tales">
+        Underwater Worlds
+      </button>
+    </div>
+  </div>
 
-        <div class="column-2">
-          <button class="my-choice" type="submit" name="choice" value="Fairy tales">
-            Fantasy and Otherworldly
-          </button>
-          <button class="my-choice" type="submit" name="choice" value="Fairy tales">
-            Science Fiction
-          </button>
-          <button class="my-choice" type="submit" name="choice" value="Fairy tales">
-            Underwater Worlds
-          </button>
-        </div>
-      </div>
-      
-      
-
-
-      <!-- <label>
+  <!-- <label>
             <input type="radio" name="choice" value="Option 1"> Option 1
         </label><br>
         
@@ -122,20 +113,52 @@
         <label>
             <input type="radio" name="choice" value="Option 3"> Option 3
         </label><br> -->
-      <div class="column-1">
-        <label> <input type="checkbox" name="choice" value="Other" /> Other </label>
-        <br />
-  
-        <input
-          type="text"
-          name="other_input"
-          placeholder="Enter other option"
-          style="margin-top: 5px"
-        /><br />
-  
-        <input type="submit" value="Submit" />
-      </div>
-      
-    </form>
-{% endblock %}
+  <div class="column-1">
+    <label> <input type="checkbox" name="choice" value="Other" /> Other </label>
+    <br />
 
+    <input
+      type="text"
+      name="other_input"
+      placeholder="Enter other option"
+      style="margin-top: 5px"
+    /><br />
+
+    <input type="submit" value="Submit" />
+  </div>
+  <div><h3>Choose your language</h3></div>
+  <!-- div for lang -->
+  <div>
+    <label>
+      <input type="checkbox" id="checkbox1" name="lang_input" />English</label
+    >
+    <br />
+    <label>
+      <input type="checkbox" id="checkbox2" name="lang_input" />Spanish</label
+    >
+
+    <script>
+      // Get references to the checkboxes
+      const checkbox1 = document.getElementById("checkbox1");
+      const checkbox2 = document.getElementById("checkbox2");
+
+      // Add an event listener to checkbox1
+      checkbox1.addEventListener("change", function () {
+        if (checkbox1.checked) {
+          checkbox2.checked = false; // Uncheck checkbox2
+        }
+      });
+
+      // Add an event listener to checkbox2
+      checkbox2.addEventListener("change", function () {
+        if (checkbox2.checked) {
+          checkbox1.checked = false; // Uncheck checkbox1
+        }
+      });
+
+      // Automatically check checkbox1 when the page loads
+      checkbox1.checked = true;
+    </script>
+  </div>
+</form>
+{% endblock %}
