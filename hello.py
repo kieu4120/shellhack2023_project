@@ -3,8 +3,38 @@ import time
 import threading
 app = Flask(__name__)
 
+
+#for openai API
+import openai
+openai.api_key = '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'
+model_id = 'gpt-3.5-turbo'
+
+
+
+async def ChatGPT_conversation(choice):
+
+    #user prompts the input
+    
+    prompt = "Write a sleep story with topic: " + choice
+    #user picks a category to generate a story.
+
+    
+    response = await openai.ChatCompletion.create(
+        model=model_id,
+        messages= prompt,
+        temperature = 0.6
+    )
+
+    #api output
+    output = response["choices"][0]["message"]["content"]
+    print(output)
+
+    return output
+
+
 @app.route('/', methods=['GET', 'POST'])
 def index():
+    print("cool")
     if request.method == 'POST':
         name = request.form.get('name')
         return redirect(url_for('hello', name=name))
@@ -17,14 +47,19 @@ def hello(name):
   
 @app.route('/menu', methods=['GET', 'POST'])
 def menu():
+
     if request.method == 'POST':
         choice = request.form.get('choice')
         other_input = request.form.get('other_input')
         if choice == "Other" and other_input:
             selected_option = other_input
+            conv = ChatGPT_conversation(selected_option)
         else:
             selected_option = choice
-        return redirect(url_for('loading'))
+            conv = ChatGPT_conversation (selected_option)
+            #call the function
+
+        # return redirect(url_for('loading'))
     
     return render_template('menu.html')
 
