@@ -11,17 +11,16 @@ model_id = 'gpt-3.5-turbo'
 
 
 
-async def ChatGPT_conversation(choice):
+def ChatGPT_conversation(choice):
 
     #user prompts the input
-    
-    prompt = "Write a sleep story with topic: " + choice
+   
     #user picks a category to generate a story.
 
     
-    response = await openai.ChatCompletion.create(
+    response =  openai.ChatCompletion.create(
         model=model_id,
-        messages= prompt,
+        messages= [{'role':'user', 'content': f"Write a story with topic {choice}"}],
         temperature = 0.6
     )
 
