@@ -54,7 +54,7 @@ def TTS(output):
 
     #
     response = requests.request("GET", url)
-    filename = "static/audio.wav"
+    filename = "static/audio/audio.wav"
     with open(filename, 'wb') as f:
         f.write(response.content)
     
@@ -105,7 +105,7 @@ def loading():
 
 @app.route('/result')
 def result():
-    return "Task completed! Here's the result."
+    return render_template("result.html")
 
 
 

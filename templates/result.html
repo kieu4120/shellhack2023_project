@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <audio id="audio-player" controls>
+        <source src="{{ url_for('static', filename='audio/audio.wav') }}" type="audio/wav">
+    </audio>
+    <button id="rewind-button">Rewind</button>
+    <button id="pause-button">Pause</button> 
+    <button id="fast-forward-button">Fast Forward</button>
+
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            var audioPlayer = document.getElementById('audio-player');
+            var rewindButton = document.getElementById('rewind-button');
+            var fastForwardButton = document.getElementById('fast-forward-button');
+            var pauseButton = document.getElementById('pause-button'); // Get the Pause button
+
+            rewindButton.addEventListener('click', function() {
+                audioPlayer.currentTime -= 5; // Rewind by 5 seconds (adjust as needed)
+            });
+
+            pauseButton.addEventListener('click', function() {
+                if (audioPlayer.paused) {
+                    audioPlayer.play(); // If paused, resume playback
+                    pauseButton.textContent = 'Pause'; // Change button text to 'Pause'
+                } else {
+                    audioPlayer.pause(); // If playing, pause playback
+                    pauseButton.textContent = 'Resume'; // Change button text to 'Resume'
+                }
+            });
+
+            fastForwardButton.addEventListener('click', function() {
+                audioPlayer.currentTime += 5; // Fast forward by 5 seconds (adjust as needed)
+            });
+        });
+    </script>
+    
+</body>
+</html>
