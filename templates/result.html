@@ -5,7 +5,13 @@
     html,body {
         background-color: #FFF0F5;
     }
+    .background-music {
+        height: 2px;
+        position: sticky;
+        z-index: 1;
+    }
     .player {
+        /* z-index: 1; */
         position: sticky;
         bottom: 10%;
         display: flex;
@@ -13,6 +19,7 @@
         justify-content: center;
         flex-direction: column;
     }
+
     .story{
         margin: auto;
         width: 60%;
@@ -60,7 +67,7 @@
         display: flex;
         justify-content: center;
         height: 80px;
-        padding: 0 15px;
+        padding: 0 40px;
         width: 300px;
         box-shadow: 0px 20px 20px 5px rgba(132, 132, 132, 0.3);
 
@@ -200,6 +207,11 @@
     <div class="story">
         {{text}}
         
+    </div>
+    <div class="background-music">
+        <input type="checkbox" name="background-music">
+        <label for="background-music">Background Music</label>
+        <audio id="background-music" src="{{ url_for('static', filename='background_sound/34-Rain-10min.mp3') }}" type="audio/mpeg" controls style="display: none;"></audio>
     </div>
     <div class="player">
         <div id="info" class="info active">
