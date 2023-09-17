@@ -3,12 +3,15 @@
 {% block style %}
 <style>
     html,body {
-        position: relative;
-        min-height: 100vh;
         background-color: #FFF0F5;
+    }
+    .player {
+        position: sticky;
+        bottom: 10%;
         display: flex;
         align-items: center;
         justify-content: center;
+        flex-direction: column;
     }
     /* input {
         width: 100%;
@@ -20,7 +23,8 @@
         height: 60px;
 		background-color: rgba(255, 255, 255, 0.5);
         border-radius: 15px;
-		padding: 5px 50px 5px 50px;
+        width: 300px;
+		padding: 5px 20px 20px 20px;
 
         .artist,
 		.name {
@@ -168,6 +172,7 @@
 
 
 {% block body %} 
+<div style="height: 2500px;"></div>
     <div class="player">
         <div id="info" class="info active">
             <span class="artist">Flume</span>
