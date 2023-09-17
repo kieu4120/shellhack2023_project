@@ -3,12 +3,13 @@
 {% block style %}
 <style>
     html,body {
-        background-color: #FFF0F5;
+        background-color: #211522;
     }
     .background-music {
         position: sticky;
         z-index: 1;
         bottom: 10%;
+        color: #F39F5A;
     }
     .player {
         /* z-index: 1; */
@@ -35,7 +36,7 @@
     }
     .info {
         height: 60px;
-		background-color: rgba(255, 255, 255, 0.5);
+		background-color: #C197D2;
         border-radius: 15px;
         width: 300px;
 		padding: 5px 20px 20px 20px;
@@ -147,6 +148,10 @@
                 opacity: 1; /* Cursor is visible in the middle of the animation */
             }
         }
+        p{
+            color: white;
+            
+        }
 </style>
 {% endblock %}
 
@@ -243,7 +248,7 @@
     <div class="player">
         <div id="info" class="info active">
             <span class="artist">Flume</span>
-            <span class="name">GPT-3</span>
+            <span class="name">Say it</span>
             <div class="progress-bar">
                 <input type="range" id="progress" class="progress" min="0" max="100" value="0" step="1">
             </div>
