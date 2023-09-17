@@ -3,9 +3,6 @@ from flask import Flask, render_template, request, redirect, url_for, jsonify
 #requests lib for TTS api
 import requests, json, time
 
-#library for google TTS
-from gtts import gTTS
-
 app = Flask(__name__)
 
 #for openai API
@@ -28,8 +25,12 @@ def functioning():
      TTS(text)
     #use TTS for es
     else:
-        tts = gTTS(text = text)
-        tts.save("static/audio/audio.wav")
+        url = f"http://api.voicerss.org/?key=b1dd2a39ac07454799c3be2b70e6c844&hl=es-es&src={text}&r=-4"
+        response = requests.post(url)
+
+        with open("static/audio/audio.wav", 'wb') as f:
+            f.write(response.content)
+
     return jsonify({'status': 'Done'})
     
 #Helper function for openAI and TTS API
@@ -46,7 +47,7 @@ def ChatGPT_conversation(choice):
 
         #token limits
         max_tokens = 50,
-        temperature = 0.6
+        temperature = 0.7
     )
 
     #OpenAi API output. - text
