@@ -1,9 +1,36 @@
 from flask import Flask, render_template, request, redirect, url_for, jsonify
 
+#for auth0
+from os import environ as env
+from urllib.parse import quote_plus, urlencode
+
+from authlib.integrations.flask_client import OAuth
+from dotenv import find_dotenv, load_dotenv
+from flask import Flask, redirect, render_template, session, url_for
+
+ENV_FILE = find_dotenv()
+if ENV_FILE:
+    load_dotenv(ENV_FILE)
+
+
 #requests lib for TTS api
 import requests, json, time
 
 app = Flask(__name__)
+app.secret_key = env.get("APP_SECRET_KEY")
+
+
+oauth = OAuth(app)
+
+oauth.register(
+    "auth0",
+    client_id=env.get("AUTH0_CLIENT_ID"),
+    client_secret=env.get("AUTH0_CLIENT_SECRET"),
+    client_kwargs={
+        "scope": "openid profile email",
+    },
+    server_metadata_url=f'https://{env.get("AUTH0_DOMAIN")}/.well-known/openid-configuration',
+)
 
 #for openai API
 import openai
@@ -22,10 +49,10 @@ def functioning():
     global text
     text = ChatGPT_conversation(selected_option)
 
-    #if lang_choice is english use TTS for English
+    #if lang_choice is english use TTS for eng
     if selected_language == 'en':
      TTS(text)
-    #use TTS for Spanish
+    #use TTS for es
     else:
         url = f"http://api.voicerss.org/?key=b1dd2a39ac07454799c3be2b70e6c844&hl=es-es&src={text}&r=-4"
         response = requests.post(url)
@@ -86,19 +113,64 @@ def TTS(output):
 
     return 
 #main route
-@app.route('/', methods=['GET', 'POST'])
-def index():
-    print("cool")
-    if request.method == 'POST':
-        name = request.form.get('name')
-        return redirect(url_for('hello', name=name))
+#@app.route('/', methods=['GET', 'POST'])
+@app.route("/")
+def home():
+    return render_template(
+        "base1.html",
+        session=session.get("user"),
+        pretty=json.dumps(session.get("user"), indent=4),
+    )
+    # if request.method == 'POST':
+    #     name = request.form.get('name')
+    #     return redirect(url_for('hello', name=name))
 
-    return render_template('index.html')
+    # return render_template('index.html')
+
+
+#call back to the login page?
+#saving the session for the user, 
+#so when they visit again; they dont have to sign back. 
+@app.route("/callback", methods=["GET", "POST"])
+def callback():
+    token = oauth.auth0.authorize_access_token()
+    session["user"] = token
+    return redirect("/hello")
+
+@app.route("/login")
+def login():
+    return oauth.auth0.authorize_redirect(
+        redirect_uri=url_for("callback", _external=True)
+    )
+
+#clear user session in app and redirect to make sure the section is clear.
+@app.route("/logout")
+def logout():
+    session.clear()
+    return redirect(
+        "https://"
+        + env.get("AUTH0_DOMAIN")
+        + "/v2/logout?"
+        + urlencode(
+            {
+                "returnTo": url_for("base1", _external=True),
+                "client_id": env.get("AUTH0_CLIENT_ID"),
+            },
+            quote_via=quote_plus,
+        )
+    )
+
+
 
 #after putting in names
-@app.route('/hello/<name>')
-def hello(name):
-    return render_template("hello.html", name=name)
+@app.route('/hello')
+def hello():
+    return render_template(
+        "hello.html",
+        session=session.get("user"),
+        pretty=json.dumps(session.get("user"), indent=4),
+    )
+    #return render_template("hello.html")
   
 
 @app.route('/menu', methods=['GET', 'POST'])
@@ -132,5 +204,5 @@ def result():
 
 
 
-if __name__ == '__main__':
-    app.run(debug=True,port=8000)
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", port=env.get("PORT", 3000))
