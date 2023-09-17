@@ -19,14 +19,21 @@ headers = {'content-type': "application/json", 'x-rapidapi-host': "large-text-to
 @app.route('/functioning')
 def functioning():
     text = ChatGPT_conversation(selected_option)
-    TTS(text)
+    if selected_language == 'en':
+     TTS(text)
     return jsonify({'status': 'Done'})
     
 #Helper function for openAI and TTS API
 def ChatGPT_conversation(choice):
+    # Decide which language to generate
+    if selected_language =='en':
+        prompt= f"Write a story with topic {choice}"
+    else:
+        prompt = f"Write a story with topic {choice} in Spanish."
+    
     response =  openai.ChatCompletion.create(
         model=model_id,
-        messages= [{'role':'user', 'content': f"Write a story with topic {choice}"}],
+        messages= [{'role':'user', 'content': prompt}],
 
         #token limits
         max_tokens = 50,
@@ -35,7 +42,10 @@ def ChatGPT_conversation(choice):
 
     #OpenAi API output. - text
     output = response["choices"][0]["message"]["content"]
+    print(output)
     return output
+
+
 def TTS(output):
     #TTS API
     response = requests.request("POST", "https://large-text-to-speech.p.rapidapi.com/tts", data=json.dumps({"text": output}), headers=headers)
@@ -83,6 +93,8 @@ def hello(name):
 def menu():
 
     if request.method == 'POST':
+        global selected_language
+        selected_language = request.form.get('selected_language')
         choice = request.form.get('choice')
         other_input = request.form.get('other_input')
         global selected_option

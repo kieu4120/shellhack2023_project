@@ -70,12 +70,23 @@
     display: flex;
     width: 20%;
   }
+  .active {
+    border-color: #d3b1c2;
+    border-style: solid;
+  }
 </style>
 {% endblock %} {% block body %}
 
-<h1>Choose an Option or Enter "Other"</h1>
 
 <form method="post">
+  <div class = "lang">
+    <h4>Story language </h4>
+    <button type="button" id="lang-button" onclick="selectLanguage('en')">English</button>
+    <button type="button" id="lang-button" onclick="selectLanguage('es')">Spanish</button>
+    <input type="hidden" id="selected-language" name="selected_language" value="">
+  </div>
+
+<h1>Choose an Option or Write Your Own Prompt</h1>
   <div class="column-2-parrent">
     <div class="column-2">
       <button class="my-choice" type="submit" name="choice" value="Fantasy">
@@ -102,32 +113,40 @@
     </div>
   </div>
 
-  <!-- <label>
-            <input type="radio" name="choice" value="Option 1"> Option 1
-        </label><br>
-        
-        <label>
-            <input type="radio" name="choice" value="Option 2"> Option 2
-        </label><br>
-        
-        <label>
-            <input type="radio" name="choice" value="Option 3"> Option 3
-        </label><br> -->
-  <div><h3>Choose your language</h3></div>
-  <div>
-    <label>
-      <input type="checkbox" id="checkbox1" name="lang_input" />English</label
-    >
+  <div class="column-1">
+    <label> <input type="checkbox" name="choice" value="Other" /> Other </label>
     <br />
-    <label>
-      <input type="checkbox" id="checkbox2" name="lang_input" />Spanish</label
-    >
 
+    <input
+      type="text"
+      name="other_input"
+      placeholder="Personalize your story..."
+      style="margin-top: 5px"
+    /><br />
+
+    <input type="submit" value="Submit" />
+  </div>
+  
     <script>
       // Get references to the checkboxes
       const checkbox1 = document.getElementById("checkbox1");
       const checkbox2 = document.getElementById("checkbox2");
-
+      // LANG
+      const lang = document.querySelectorAll("#lang-button")
+        
+      function deactive(buttons) {
+        buttons.forEach((button) => {
+        button.classList.remove('active');
+        });
+      }
+      lang.forEach((btn) => { btn.addEventListener("click", function() {
+      deactive(lang);
+      btn.classList.add("active");
+          
+      })})
+      function selectLanguage(language) {
+            document.getElementById('selected-language').value = language;
+    }
       // Add an event listener to checkbox1
       checkbox1.addEventListener("change", function () {
         if (checkbox1.checked) {
