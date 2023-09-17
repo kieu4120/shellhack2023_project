@@ -66,16 +66,16 @@ def functioning():
 def ChatGPT_conversation(choice):
     # Decide which language to generate
     if selected_language =='en':
-        prompt= f"Write a story with topic {choice}"
+        prompt= f"Write a story with topic {choice} in 100 words"
     else:
-        prompt = f"Write a story with topic {choice} in Spanish."
+        prompt = f"Write a story with topic {choice} in Spanish in 100 words."
     
     response =  openai.ChatCompletion.create(
         model=model_id,
         messages= [{'role':'user', 'content': prompt}],
 
         #token limits
-        max_tokens = 50,
+        #max_tokens = 50,
         temperature = 0.7
     )
 
