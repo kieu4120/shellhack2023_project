@@ -108,14 +108,13 @@ def menu():
         choice = request.form.get('choice')
         other_input = request.form.get('other_input')
         global selected_option
-        if choice == "Other" and other_input:
+        if other_input:
             selected_option = other_input
         else:
             selected_option = choice
-            
+        print(selected_option)  
         return redirect(url_for('loading'))
 
-        # return redirect(url_for('loading'))
     
     return render_template('menu.html')
 

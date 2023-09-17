@@ -39,7 +39,7 @@
     margin-top: 20px;
     margin-left: 10px;
     margin-right: 10px;
-    border-radius: 5px;
+    border-radius: 30px;
     border: 1px solid;
     padding: 0px 20px;
     font-size: 2em;
@@ -57,11 +57,10 @@
   }
 
   .column-1 input:last-of-type {
-    width: 30%;
-    border-radius: 5px;
-    border: 1px solid;
-    padding: 0px 20px;
-    font-size: 2em;
+    width: 20%;
+    border-radius: 20px;
+    padding: 15px 15px;
+    font-size: 1em;
     background: white;
     cursor: pointer;
   }
@@ -71,9 +70,18 @@
     width: 20%;
   }
   .active {
-    border-color: #d3b1c2;
+    background-color: #d3b1c2;
+  }
+  #lang-button {
+    border-radius: 5px;
     border-style: solid;
   }
+  #lang-button:hover {
+    background-color: #bf9faf;
+
+  }
+
+ 
 </style>
 {% endblock %} {% block body %}
 
@@ -86,7 +94,7 @@
     <input type="hidden" id="selected-language" name="selected_language" value="">
   </div>
 
-<h1>Choose an Option or Write Your Own Prompt</h1>
+<h1 style="text-align: center;">Choose an Option or Write Your Own Prompt</h1>
   <div class="column-2-parrent">
     <div class="column-2">
       <button class="my-choice" type="submit" name="choice" value="Fantasy">
@@ -114,17 +122,17 @@
   </div>
 
   <div class="column-1">
-    <label> <input type="checkbox" name="choice" value="Other" /> Other </label>
-    <br />
+    <!-- <label> <input type="checkbox" name="choice" value="Other" /> Other </label>
+    <br /> -->
 
-    <input
+    <input style="padding: 10px 20px"
       type="text"
       name="other_input"
       placeholder="Personalize your story..."
       style="margin-top: 5px"
     /><br />
 
-    <input type="submit" value="Submit" />
+    <input id="submit-btn" type="submit" value="Get your story" />
   </div>
   
     <script>
@@ -165,19 +173,7 @@
       checkbox1.checked = true;
     </script>
   </div>
-  <div class="column-1">
-    <label> <input type="checkbox" name="choice" value="Other" /> Other </label>
-    <br />
-
-    <input
-      type="text"
-      name="other_input"
-      placeholder="Enter other option"
-      style="margin-top: 5px"
-    /><br />
-
-    <input type="submit" value="Submit" />
-  </div>
+  
 
   <!-- div for lang -->
 </form>
