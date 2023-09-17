@@ -10,6 +10,7 @@ import openai
 openai.api_key = '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'
 model_id = 'gpt-3.5-turbo'
 
+
 #key for text to speech
 apikey = "c50dcb69bamshe0261669095ecbbp1aa5f1jsnb6671c12abb7"
 
@@ -18,6 +19,7 @@ headers = {'content-type': "application/json", 'x-rapidapi-host': "large-text-to
 
 @app.route('/functioning')
 def functioning():
+    global text
     text = ChatGPT_conversation(selected_option)
 
     #if lang_choice is english use TTS for English
@@ -126,7 +128,7 @@ def loading():
 
 @app.route('/result')
 def result():
-    return render_template("result.html")
+    return render_template("result.html", text=text)
 
 
 
