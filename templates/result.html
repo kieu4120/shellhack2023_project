@@ -6,9 +6,9 @@
         background-color: #FFF0F5;
     }
     .background-music {
-        height: 2px;
         position: sticky;
         z-index: 1;
+        bottom: 10%;
     }
     .player {
         /* z-index: 1; */
@@ -162,6 +162,19 @@
             var songProgress = document.querySelector(".progress");
             var currentSongPlay = document.querySelector("audio");
 
+            var backgroundMusic = document.getElementById('background-music');
+            var backgoundInput = document.querySelector('.background-music input')
+
+            backgoundInput.addEventListener('change', function() {
+                if(this.checked)
+                {
+                    backgroundMusic.play();
+                    backgroundMusic.volume = 0.1
+                } else {
+                    backgroundMusic.pause();
+                }
+            })
+
             // handles song play time
             currentSongPlay.ontimeupdate = function () {
                 songProgress.value = Math.floor(currentSongPlay.currentTime / currentSongPlay.duration * 100);
@@ -230,7 +243,7 @@
     <div class="player">
         <div id="info" class="info active">
             <span class="artist">Flume</span>
-            <span class="name">Say it</span>
+            <span class="name">GPT-3</span>
             <div class="progress-bar">
                 <input type="range" id="progress" class="progress" min="0" max="100" value="0" step="1">
             </div>
