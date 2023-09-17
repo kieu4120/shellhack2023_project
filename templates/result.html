@@ -152,6 +152,11 @@
             color: white;
             
         }
+        #back{
+            position: fixed;
+            margin: 1% 15%;
+        }
+        
 </style>
 {% endblock %}
 
@@ -236,6 +241,7 @@
 
 {% block body %} 
     <h2 id="logo">Dastory</h2>
+    <a href="/menu" id="back"><svg  width="30px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#C197D2"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M6 12H18M6 12L11 7M6 12L11 17" stroke="#C197D2" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg></a>
     <div class="story typing-text" >
        <p id="typed-text"></p> 
         
@@ -248,7 +254,7 @@
     <div class="player">
         <div id="info" class="info active">
             <span class="artist">Flume</span>
-            <span class="name">Say it</span>
+            <span style="color: #211522 "class="name">GPT3.5</span>
             <div class="progress-bar">
                 <input type="range" id="progress" class="progress" min="0" max="100" value="0" step="1">
             </div>
