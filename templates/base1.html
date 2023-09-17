@@ -57,8 +57,18 @@
     <div><pre>{{pretty}}</pre></div>
     {% else %}
     <!-- <h1 id="profileDropDown">Welcome Guest</h1> -->
-    <b>Dastory</b>
-    <p><a href="/login" id="qsLoginBtn">Login</a></p>
+    <h1><b>Dastory</b></h1>
+    <!-- <p><a href="/login" id="qsLoginBtn">Login</a></p> -->
+    <button type="button" id="loginBtn">Login</button>
+    <script>
+      const loginButton = document.getElementById("loginBtn");
+
+      // Add a click event listener to the button
+      loginButton.addEventListener("click", function () {
+        // Redirect to the "/login" page
+        window.location.href = "/login";
+      });
+    </script>
     {% endif %}
   </body>
 </html>
