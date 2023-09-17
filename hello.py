@@ -3,6 +3,9 @@ from flask import Flask, render_template, request, redirect, url_for, jsonify
 #requests lib for TTS api
 import requests, json, time
 
+#library for google TTS
+from gtts import gTTS
+
 app = Flask(__name__)
 
 #for openai API
@@ -19,8 +22,14 @@ headers = {'content-type': "application/json", 'x-rapidapi-host': "large-text-to
 @app.route('/functioning')
 def functioning():
     text = ChatGPT_conversation(selected_option)
+
+    #if lang_choice is english use TTS for eng
     if selected_language == 'en':
      TTS(text)
+    #use TTS for es
+    else:
+        tts = gTTS(text = text)
+        tts.save("static/audio/audio.wav")
     return jsonify({'status': 'Done'})
     
 #Helper function for openAI and TTS API
