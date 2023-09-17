@@ -41,25 +41,14 @@
     background: white;
     cursor: pointer;
   }
-  .container {
-    position: relative; /* Create a positioning context for the button */
-    width: 200px; /* Adjust the container width as needed */
-    height: 200px; /* Adjust the container height as needed */
-    background-color: lightgray; /* Optional: Add a background color to see the container */
-  }
-
-  .loginBtn {
-    position: absolute;
-    top: 0;
-    left: 0;
+  button #qsLogoutBtn{
+    background-color: white;
+    color: #211522;
+    text-decoration: none;
   }
 </style>
-{% endblock %} {% block body %}
-<div id="container">
-  <button type="button" id="logoutBtn">Logout</button>
-  <!-- Content goes here -->
-</div>
-<p><a href="/logout" id="qsLogoutBtn">Logout</a></p>
+{% endblock %} 
+{% block body %}
 <p>Hello {{session.userinfo.name}}!</p>
 <h1>Welcome to <b>Dastory</b></h1>
 <p>We are here to tell you stories about any topics that you wish...</p>
@@ -80,5 +69,7 @@
       />
     </svg>
   </button>
+  <button><a href="/logout" id="qsLogoutBtn">Logout</a></button>
+
 </form>
 {% endblock %}

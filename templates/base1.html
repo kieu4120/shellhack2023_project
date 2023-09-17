@@ -1,74 +1,65 @@
-<html>
-  <head>
-    <meta charset="utf-8" />
-    <title>dasStory</title>
-    <style>
-      /* CSS styles go here */
-      body {
-        color: aliceblue;
-        background-color: #211522;
-        margin: auto;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-      }
-      p {
-        font-size: 30px;
-      }
-      p:first-of-type {
-        padding-top: 25vh;
-        margin: 0;
-      }
+{% extends 'base.html' %}\
+{% block style %} 
+<style>
+body {
+    color: aliceblue;
+    background-color: #211522;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+button {
+  border-radius: 20px;
+  border: 1px solid;
+  padding: 5px 20px;
+  font-size: 1.5em;
+  background: white;
+  cursor: pointer;
+}
+a{
+  background-color: white;
+    color: #211522;
+    text-decoration: none;
+}
+b {
+    color: #d54d7b;
+    font-family: "Satisfy";
+    font-size: 65px;
+    /* line-height: 160px; */
+    font-weight: normal;
+    margin-bottom: 0px;
+    /* margin-top: 40px; */
+    text-align: center;
+    text-shadow: 0 1px 1px #fff;
+    /* padding: 2px; */
+   
 
-      p:nth-of-type(2) {
-        color: #d3b1c2;
-      }
+  
+  }
+  h1#logo{
+    
+    padding-top: 25vh;
+    margin: 0;
+  
+  }
+  
 
-      b {
-        color: #d54d7b;
-        font-family: "Satisfy";
-        font-size: 65px;
-        /* line-height: 160px; */
-        font-weight: normal;
-        margin-bottom: 0px;
-        /* margin-top: 40px; */
-        text-align: center;
-        text-shadow: 0 1px 1px #fff;
-        padding: 2px;
-      }
-      button {
-        border-radius: 20px;
-        border: 1px solid;
-        padding: 5px 20px;
-        font-size: 2em;
-        background: white;
-        cursor: pointer;
-      }
-      #profileDropDown {
-        text-align: center;
-      }
-    </style>
-  </head>
-  <body>
+  
+</style>
+{% endblock %}
+{% block body %}
     {% if session %}
+    <h1 id="logo"><b>Dastory</b></h1>
     <h1>Welcome {{session.userinfo.name}}!</h1>
-    <p><a href="/logout" id="qsLogoutBtn">Logout</a></p>
+    <button><a href="/logout" id="qsLogoutBtn">Logout</a></button>
     <div><pre>{{pretty}}</pre></div>
     {% else %}
-    <!-- <h1 id="profileDropDown">Welcome Guest</h1> -->
-    <h1><b>Dastory</b></h1>
-    <!-- <p><a href="/login" id="qsLoginBtn">Login</a></p> -->
-    <button type="button" id="loginBtn">Login</button>
-    <script>
-      const loginButton = document.getElementById("loginBtn");
-
-      // Add a click event listener to the button
-      loginButton.addEventListener("click", function () {
-        // Redirect to the "/login" page
-        window.location.href = "/login";
-      });
-    </script>
+    <h1 id="logo"><b>Dastory</b></h1>
+    <h1 id="profileDropDown">Welcome Guest</h1>
+    <button><a href="/login" id="qsLoginBtn">Login</a></button>
     {% endif %}
-  </body>
-</html>
+
+{% endblock %}
+
