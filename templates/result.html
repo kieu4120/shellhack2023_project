@@ -21,7 +21,7 @@
     }
 
     .story{
-        margin: auto;
+        margin: 25vh;
         width: 60%;
         overflow-wrap: break-word;
         margin-bottom: 5%;
@@ -126,6 +126,27 @@
         padding: 2px;
         
         }
+        #typing-text {
+            text-align: center;
+            padding: 20px;
+            font-size: 24px;
+            font-family: Arial, sans-serif;
+        }
+        
+        /* Cursor animation */
+        #typed-text::after {
+            content: '|'; /* Cursor represented by a pipe character */
+            animation: blink 1s infinite; /* Blink animation for the cursor */
+        }
+        
+        @keyframes blink {
+            0%, 100% {
+                opacity: 0; /* Cursor is invisible at the start and end */
+            }
+            50% {
+                opacity: 1; /* Cursor is visible in the middle of the animation */
+            }
+        }
 </style>
 {% endblock %}
 
@@ -171,41 +192,34 @@
                 audioPlayer.currentTime += 5; // Fast forward by 5 seconds (adjust as needed)
             });
         });
-    </script>
-    <!-- <script>
-        console.clear();
-
-        class musicPlayer {
-            constructor() {
-                this.play = this.play.bind(this);
-                this.playBtn = document.getElementById('play');
-                this.playBtn.addEventListener('click', this.play);
-                this.controlPanel = document.getElementById('control-panel');
-                this.infoBar = document.getElementById('info');
-            }
-
-            play() {
-                let controlPanelObj = this.controlPanel,
-                infoBarObj = this.infoBar
-                Array.from(controlPanelObj.classList).find(function(element){
-                            return element !== "active" ? controlPanelObj.classList.add('active') : 		controlPanelObj.classList.remove('active');
-                    });
+        // Typing effect
+        document.addEventListener('DOMContentLoaded', function() {
+                const textElement = document.getElementById('typed-text');
+                const textToType = "{{text}}"; // Text to type
+                const typingSpeed = 10; // Typing speed in milliseconds (adjust as needed)
                 
-                Array.from(infoBarObj.classList).find(function(element){
-                            return element !== "active" ? infoBarObj.classList.add('active') : 		infoBarObj.classList.remove('active');
-                    });
-            }
-        }
-
-        const newMusicplayer = new musicPlayer();
-    </script> -->
+                let charIndex = 0;
+            
+                function type() {
+                    if (charIndex < textToType.length) {
+                        textElement.textContent += textToType.charAt(charIndex);
+                        charIndex++;
+                        setTimeout(type, typingSpeed);
+                    }
+                }
+            
+                // Start the typing animation
+                type();
+            });
+    </script>
+    
 {% endblock %}
 
 
 {% block body %} 
     <h2 id="logo">Dastory</h2>
-    <div class="story">
-        {{text}}
+    <div class="story typing-text" >
+       <p id="typed-text"></p> 
         
     </div>
     <div class="background-music">
