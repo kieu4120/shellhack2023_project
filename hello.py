@@ -20,10 +20,10 @@ headers = {'content-type': "application/json", 'x-rapidapi-host': "large-text-to
 def functioning():
     text = ChatGPT_conversation(selected_option)
 
-    #if lang_choice is english use TTS for eng
+    #if lang_choice is english use TTS for English
     if selected_language == 'en':
      TTS(text)
-    #use TTS for es
+    #use TTS for Spanish
     else:
         url = f"http://api.voicerss.org/?key=b1dd2a39ac07454799c3be2b70e6c844&hl=es-es&src={text}&r=-4"
         response = requests.post(url)

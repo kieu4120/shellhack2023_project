@@ -72,25 +72,47 @@
   .active {
     background-color: #d3b1c2;
   }
-  #lang-button {
+  .lang-button {
     border-radius: 5px;
     border-style: solid;
   }
-  #lang-button:hover {
+  .lang-button:hover {
     background-color: #bf9faf;
 
   }
+.lang{
+  text-align: center;
+  margin-bottom: 50px;
+  margin-top: 50px;
 
+}
+#logo {
+  position: fixed;
+  top: 0;
+  left: 30px;
+  color: #d54d7b;
+  font-family: 'Satisfy';
+  font-size: 30px;
+  /* line-height: 160px; */
+  font-weight: normal;
+  margin-bottom: 0px;
+  /* margin-top: 40px; */
+  text-align: left;
+  text-shadow: 0 1px 1px #fff; 
+  padding: 2px;
+        
+}
  
 </style>
 {% endblock %} {% block body %}
 
+<h2 id="logo">Dastory</h2>
 
 <form method="post">
   <div class = "lang">
     <h4>Story language </h4>
-    <button type="button" id="lang-button" onclick="selectLanguage('en')">English</button>
-    <button type="button" id="lang-button" onclick="selectLanguage('es')">Spanish</button>
+    <button type="button" class="lang-button" id="en-btn" onclick="selectLanguage('en')">English</button>
+    <button type="button" class="lang-button" id="es-btn"onclick="selectLanguage('es')">Spanish</button>
     <input type="hidden" id="selected-language" name="selected_language" value="">
   </div>
 
@@ -140,7 +162,8 @@
       const checkbox1 = document.getElementById("checkbox1");
       const checkbox2 = document.getElementById("checkbox2");
       // LANG
-      const lang = document.querySelectorAll("#lang-button")
+      const lang = document.querySelectorAll(".lang-button")
+      const enbtn = document.getElementById("en-btn")
         
       function deactive(buttons) {
         buttons.forEach((button) => {
@@ -154,7 +177,10 @@
       })})
       function selectLanguage(language) {
             document.getElementById('selected-language').value = language;
-    }
+      }
+
+      enbtn.click()
+
       // Add an event listener to checkbox1
       checkbox1.addEventListener("change", function () {
         if (checkbox1.checked) {
