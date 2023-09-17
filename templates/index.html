@@ -3,15 +3,17 @@
     <style>
         body{
             color: aliceblue;
-            background-color: #451952;
+            background-color: #211522;
             margin: auto;
             display: flex;
             justify-content: center;
             align-items: center;
             flex-direction: column;
         }
+        .content{
+            padding-top: 20vh;
+        }
         h1 {
-            padding-top: 30vh;
             color: #F39F5A;
         }
         form {
@@ -35,11 +37,26 @@
             background: white;
             cursor: pointer;
         }
+        #logo {
+            color: #d54d7b;
+            font-family: 'Satisfy';
+            font-size: 15vh;
+            /* line-height: 160px; */
+            font-weight: normal;
+            margin-bottom: 0px;
+            /* margin-top: 40px; */
+            text-align: center;
+            text-shadow: 0 1px 1px #fff; 
+            padding: 2px;
+        }
+
     </style>
 {% endblock %}
 
 {% block body %}
-    <h1>Type your name below</h1>
+    <!-- <h1>Type your name below</h1> -->
+    <div class="content">
+    <h1 id ="logo">Dastory</h1>
     <form method="post">
         <!-- <label for="name">Name:</label> -->
         <input type="text" id="name" name="name" required><br><br>
@@ -49,4 +66,5 @@
 
         <button type="submit"> <svg width = "20px" clip-rule="evenodd" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="m13.022 14.999v3.251c0 .412.335.75.752.75.188 0 .375-.071.518-.206 1.775-1.685 4.945-4.692 6.396-6.069.2-.189.312-.452.312-.725 0-.274-.112-.536-.312-.725-1.451-1.377-4.621-4.385-6.396-6.068-.143-.136-.33-.207-.518-.207-.417 0-.752.337-.752.75v3.251h-9.02c-.531 0-1.002.47-1.002 1v3.998c0 .53.471 1 1.002 1z" fill-rule="nonzero"/></svg></button>
     </form>
+    </div>
 {% endblock %}
